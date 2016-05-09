@@ -1,29 +1,76 @@
-<?php get_header(); ?>
+<?php /*
+* Template Name: Text
+*/
+get_header(); ?>
 
-<main id="content">
 
-	<div class="container">
-		<div class="row">
-			<div class="nine columns">
-				<?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
 
-					<h1><?php the_title(); ?></h1>
+<main id="main" class="site-main" role="main">
 
-					<?php the_content(); ?>
+  <div class="container">
 
-				<?php endwhile; ?>
-			</div>
+    <div class="row">
 
-			<div class="three columns">
+      <?php if (get_field('header_background')) :
 
-				<!-- Change this to repeater of custom fields -->
+        $short_banner = get_field('header_background');
 
-				<?php get_sidebar(); ?>
-			</div>
+        // vars
+        $url = $short_banner['url'];
+        $title = $short_banner['title'];
+        $alt = $short_banner['alt'];
+        $caption = $short_banner['caption'];
 
-		</div>
-	</div>
+        // thumbnail
+        $thumb = $short_banner['sizes']['short-banner'];
 
-</main><!-- End of Content -->
+      ?>
+
+        <div class="twelve columns header_bg" style="background-image:url('<?php echo $thumb; ?>')" >
+          <!-- <img src="<?php //echo $thumb; ?>" /> -->
+
+          <h1 class="page-title"><?php the_title(); ?></h1>
+          <img src="<?php echo get_template_directory_uri('/'); ?>/img/squiggle-underline.png">
+        </div>
+
+      <?php endif; ?>
+
+    </div>
+
+  <?php get_template_part('/partials/grid'); ?>
+  <div class="container">
+  	<div class="row landing-callouts">
+  		<div class="twelve columns">
+	  		<div class="separator">
+	  			<img src="<?php echo get_template_directory_uri('/'); ?>/img/squiggle-underline.png">
+	  		</div>
+  		</div>
+
+  		<div class="wrap">
+
+	  		<?php while (have_rows('landing_callouts')) : the_row(); 
+	  			$callout_text = get_sub_field('callout_text');
+	  		?>
+	  		<div class="six columns callout-block">
+	  			<p><?php echo $callout_text;?></p>
+	  		</div>
+	  		<?php endwhile; ?>
+
+
+	  		<a class="cta-link" href="<?php get_field('landing_callout_CTA_link') ?>">
+  			<?php echo get_field('landing_callout_CTA_link_text') ?>
+  			</a>
+  		</div>
+  		<div class="twelve columns">
+	  		<div class="separator">
+	  			<img src="<?php echo get_template_directory_uri('/'); ?>/img/squiggle-underline.png">
+	  		</div>
+  		</div>
+
+  	</div>
+  </div>
+  </div>
+
+</main><!-- #main -->
 
 <?php get_footer(); ?>

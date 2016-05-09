@@ -8,7 +8,15 @@
 
 <head>
 	<meta charset="utf-8">
-	<title><?php bloginfo('name'); ?></title>
+	<title>
+		<?php if (is_front_page()){
+			bloginfo('name');
+		}else{
+			bloginfo('name'); wp_title('|', 'true');
+		}
+		?>
+
+	</title>
 
 	<!-- Meta / og: tags -->
 	<meta name="description" content="">
@@ -42,71 +50,82 @@
 </head>
 
 <body <?php body_class(); ?>>
-
+	
 	<div id="page" class='hfeed site'>
+
+		<div class="bg"></div>
+	<div class="bg hidden"></div>
 
 		<header>
 			<div class="container">
 
 				<div class="twelve columns">
-					<div class="logo">
-						<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
-							<img src="<?php echo get_template_directory_uri('/'); ?>/img/logo.png">
-						</a>
-					</div>
-					<nav class="gateway-navigation">
-						<?php if(has_nav_menu('gateway_nav')){
-									$defaults = array(
-										'theme_location'  => 'gateway_nav',
-										'menu'            => 'gateway_nav',
-										'container'       => false,
-										'container_class' => '',
-										'container_id'    => '',
-										'menu_class'      => 'gateway',
-										'menu_id'         => '',
-										'echo'            => true,
-										'fallback_cb'     => 'wp_page_menu',
-										'before'          => '',
-										'after'           => '',
-										'link_before'     => '',
-										'link_after'      => '',
-										'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
-										'depth'           => 0,
-										'walker'          => ''
-									); wp_nav_menu( $defaults );
-								}else{
-									echo "<p><em>main_nav</em> doesn't exist! Create it and it'll render here.</p>";
-								} ?>
+					<div class="wrap">
+						<div class="logo">
+							<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
+								<img src="<?php echo get_template_directory_uri('/'); ?>/img/logo.png">
+							</a>
+						</div>
+						<div class="mobile-nav-trigger">
+							<i class="fa fa-fw fa-2x fa-bars"></i>
+						</div>
+						<div class="navigation">
+							<div class="sidr-close"> <img src="<?php echo get_template_directory_uri('/'); ?>/img/logo.png"></div>
+							<nav class="gateway-navigation">
+								<?php if(has_nav_menu('gateway_nav')){
+											$defaults = array(
+												'theme_location'  => 'gateway_nav',
+												'menu'            => 'gateway_nav',
+												'container'       => false,
+												'container_class' => '',
+												'container_id'    => '',
+												'menu_class'      => 'gateway',
+												'menu_id'         => '',
+												'echo'            => true,
+												'fallback_cb'     => 'wp_page_menu',
+												'before'          => '',
+												'after'           => '',
+												'link_before'     => '',
+												'link_after'      => '',
+												'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+												'depth'           => 0,
+												'walker'          => ''
+											); wp_nav_menu( $defaults );
+										}else{
+											echo "<p><em>main_nav</em> doesn't exist! Create it and it'll render here.</p>";
+										} ?>
 
-							<div class="search">
-								<input type="text" value="<?php the_search_query(); ?>" name="s" id="s" />
-								<!-- <input type="submit" id="searchsubmit" value="Search" /> -->
-							</div>
-					</nav>
-					<nav class="main-navigation">
-						<?php if(has_nav_menu('main_nav')){
-									$defaults = array(
-										'theme_location'  => 'main_nav',
-										'menu'            => 'main_nav',
-										'container'       => false,
-										'container_class' => '',
-										'container_id'    => '',
-										'menu_class'      => 'menu',
-										'menu_id'         => '',
-										'echo'            => true,
-										'fallback_cb'     => 'wp_page_menu',
-										'before'          => '',
-										'after'           => '',
-										'link_before'     => '',
-										'link_after'      => '',
-										'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
-										'depth'           => 0,
-										'walker'          => ''
-									); wp_nav_menu( $defaults );
-								}else{
-									echo "<p><em>main_nav</em> doesn't exist! Create it and it'll render here.</p>";
-								} ?>
-					</nav>
+									<div class="search">
+										<input type="text" value="<?php the_search_query(); ?>" name="s" id="s" />
+										<!-- <input type="submit" id="searchsubmit" value="Search" /> -->
+									</div>
+							</nav>
+							<nav class="main-navigation">
+								<?php if(has_nav_menu('main_nav')){
+											$defaults = array(
+												'theme_location'  => 'main_nav',
+												'menu'            => 'main_nav',
+												'container'       => false,
+												'container_class' => '',
+												'container_id'    => '',
+												'menu_class'      => 'menu',
+												'menu_id'         => '',
+												'echo'            => true,
+												'fallback_cb'     => 'wp_page_menu',
+												'before'          => '',
+												'after'           => '',
+												'link_before'     => '',
+												'link_after'      => '',
+												'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+												'depth'           => 0,
+												'walker'          => ''
+											); wp_nav_menu( $defaults );
+										}else{
+											echo "<p><em>main_nav</em> doesn't exist! Create it and it'll render here.</p>";
+										} ?>
+							</nav>
+						</div>
+					</div>
 				</div>
 
 			</div>

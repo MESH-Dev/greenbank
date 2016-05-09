@@ -11,9 +11,9 @@ get_header(); ?>
 
     <div class="row">
 
-      <?php if (get_field('short_banner')) :
+      <?php if (get_field('header_background')) :
 
-        $short_banner = get_field('short_banner');
+        $short_banner = get_field('header_background');
 
         // vars
         $url = $short_banner['url'];
@@ -26,8 +26,11 @@ get_header(); ?>
 
       ?>
 
-        <div class="twelve columns">
-          <img src="<?php echo $thumb; ?>" />
+        <div class="twelve columns header_bg" style="background-image:url('<?php echo $thumb; ?>')" >
+          <!-- <img src="<?php //echo $thumb; ?>" /> -->
+
+          <h1 class="page-title"><?php the_title(); ?></h1>
+          <img src="<?php echo get_template_directory_uri('/'); ?>/img/squiggle-underline.png">
         </div>
 
       <?php endif; ?>
@@ -36,11 +39,13 @@ get_header(); ?>
 
     <div class="row">
       
-      <div class="nine columns">
+      <div class="page-content">
 
         <?php while ( have_posts() ) : the_post(); ?>
 
-          <?php the_content(); ?>
+          <div class="the-content">
+            <?php the_content(); ?>
+          </div>
 
           <?php
             // If comments are open or we have at least one comment, load up the comment template
@@ -52,9 +57,7 @@ get_header(); ?>
         <?php endwhile; // end of the loop. ?>
 
       </div>
-      <div class="three columns">
-        <?php get_sidebar(); ?>
-      </div>
+    
 
     </div>
   </div>

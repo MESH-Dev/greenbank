@@ -6,13 +6,74 @@ get_header(); ?>
 <main id="main" class="site-main homepage-grid" role="main">
  <!--  <div class="">
     <div class=""> -->
-      <div class="panel" id="home" style="background-image:url('<?php echo get_template_directory_uri('/'); ?>/img/bg-video-placeholder.png');">
+      
+      <?php //while (have_rows('greeting_panel')) : the_row();
+      //var_dump(get_field('greeting_panel'));
+
+      $background_type = get_sub_field('background_type');
+      $video_mp4 = get_sub_field('video_mp4');
+      $video_ogg = get_sub_field('video_ogg');
+      $video_webm = get_sub_field('video_webm');
+      //$image_bg = get_sub_field('image');
+      //$image_bg_url = $image_bg['sizes']['background-fullscreen'];
+      //$title = get_sub_field('greeting_title');
+      //$statement = get_sub_field('greeting_statement');
+      $rand = mt_rand(0,2);
+
+      if($rand == 0){
+        $number = 0;
+      }elseif($rand == 1){
+        $number = 1;
+      }elseif($rand == 2){
+        $number=2;
+      }
+
+      //var_dump($rand);
+      $rows = get_field('greeting_panel');
+
+      $row_rand = $rows[$number];
+      $rand_type=$row_rand['background_type'];
+      $rand_mp4 = $row_rand['video_mp4'];
+      $rand_ogg = $row_rand['video_ogg'];
+      $rand_webm = $row_rand['video_webm'];
+      $rand_title = $row_rand['greeting_title'];
+      $rand_statement = $row_rand['greeting_statement'];
+      $rand_img = $row_rand['image'];
+      $rand_img_url = $rand_img['sizes']['background-fullscreen'];
+
+      $rand_poster = $row_rand['video_placeholder'];
+      $rand_poster_url = $rand_poster['sizes']['background-fullscreen'];
+      
+
+      //var_dump ($title);
+      //var_dump($rand);
+
+      ?>
+      <div class="panel" id="home" style="background-image:url('<?php if ($rand_type=="image"){ echo $rand_img_url;} ?>')">
+        
+         <?php if($rand_type == "video"){ ?>
+            <video id="bgvideo" poster="<?php echo $rand_poster_url ?>" autoplay loop muted>
+              <source src="<?php echo $rand_mp4; ?>" type="video/mp4">
+              <source src="<?php echo $rand_ogg; ?>" type="video/ogg">
+              <source src="<?php echo $rand_webm; ?>" type="video/webm">
+            </video>
+          <?php } ?>
+
         <div class="content">
-          <h1>Life is possible beyond our planet</h1>
+
+         
+
+          <img class="green ping" src="<?php echo get_template_directory_uri('/'); ?>/img/ping-hp-green.png">
+          <img class="yellow ping" src="<?php echo get_template_directory_uri('/'); ?>/img/ping-hp-yellowgreen.png">
+          <img class="purple ping" src="<?php echo get_template_directory_uri('/'); ?>/img/ping-hp-purple.png">
+
+          <h1><?php echo $background_type; ?> <?php echo $rand_title; ?> </h1>
 
           <div class="sub-head">
-            <h2>Sugars and other pre-biotic molecules in interstellar space have been found, meaning that life is possible beyond Earth.</h2>
+            <h2><?php echo $rand_statement; ?></h2>
           </div>
+
+          
 
           <div class="down-arrow">
             <div class="wrap">
@@ -21,146 +82,43 @@ get_header(); ?>
           </div> <!-- end down-arrow -->
         </div> <!--end content-->
       </div><!--end panel #home -->
+      <?php //endwhile;?>
     <!-- </div> --> <!--end row-->
   <!-- </div> --> <!--end container-->
 
-    <div class="grid">
+  <?php 
+    $hp_banner = get_field('title_banner');
+    $hp_intro = get_field('intro_paragraph');
+    $hp_intro_cta = get_field('ip_cta_text');
+    $hp_intro_cta_link = get_field('ip_cta_link');
 
-      <?php if (have_rows('grid_section')) :
-              while (have_rows('grid_section')) : the_row();
+  ?>
 
-              $section_type = get_sub_field('section_type');
-              // $section_type_object = get_field_object('section_type');
-              // $section_type_output = $section_type_object['choices'][$section_type];
-              
-              //var_dump($section_type);
+  <div class="banner purple-gradient">
+    <h2><?php echo $hp_banner; ?><h2>
 
-        ?>
+      <img src="<?php echo get_template_directory_uri('/'); ?>/img/squiggle-underline.png">
+  </div>
 
-        <?php if ($section_type == 'banner') { 
+  <div class="container">
+    <div class="row intro">
+      <div class="four columns" id="telescope">
+        <img src="<?php echo get_template_directory_uri('/'); ?>/img/telescope.png">
+      </div>
+      <div class="eight columns">
+        <div class="intro-text">
+          <h2 class="text-gradient" bottomColor="#a44fdf" topColor="#87e442">
+            <?php echo $hp_intro; ?>
+          </h2>
+          <a class="cta-link" href="<?php echo $hp_intro_cta_link; ?>">
+            <?php echo $hp_intro_cta ?>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
 
-          $banner_bg = get_sub_field('banner_title_background');
-          $banner_title = get_sub_field('banner_title');
-          ?>
-
-          <div class="banner <?php echo $banner_bg ?>">
-            <h2><?php echo $banner_title; ?></h2>
-            <img src="<?php echo get_template_directory_uri('/'); ?>/img/squiggle-underline.png">
-
-          </div>
-
-        <?php } elseif ($section_type == "four-column"){?>
-        <div class="container">
-          <div class="row">
-
-            <?php  $fc_cnt = 1; while (have_rows('four_column')) : the_row();
-
-            //$fc_cnt = 1;
-            $number = '';
-            $four_column_type = get_sub_field('four_column_grid_type');
-            $grid_callout = get_sub_field('grid_callout');
-            $special_background = get_sub_field('special_background');
-            $fc_background = get_sub_field('fc_background_image');
-            $fc_background_url = $fc_background['sizes']['large'];
-            $copy_title = get_sub_field('copy_title');
-            $copy_paragraph = get_sub_field('copy_paragraph');
-
-            if ($fc_cnt == 1){
-              $number = "odd";
-            }elseif ($fc_cnt == 2){
-              $number = "even"; 
-            }elseif ($fc_cnt == 3){
-              $number = "odd";
-            }elseif ($fc_cnt == 4){
-              $number = "even";
-            }
-          ?>
-
-            <?php if($four_column_type == "option-one") { ?>
-              <div class="three columns four-column block" style="background-image:url('<?php echo $fc_background_url; ?>')">
-                <div class="callout <?php echo $number; ?>">
-                  <span>
-                    <?php echo $grid_callout ?>
-                  </span>
-                </div>
-              </div>
-
-            <?php }elseif($four_column_type == "option-two") {?>
-
-              <div class="three columns four-column block  <?php echo $special_background; ?> ">
-                <div class="callout <?php echo $number; ?>">
-                  <span>
-                    <?php echo $grid_callout ?>
-                  </span>
-                </div>
-                  <div class="content">
-                    <h3><?php echo $copy_title; ?></h3>
-                    <p><?php echo $copy_paragraph; ?></p>
-                  </div>
-              </div>
-            <?php } ?>
-
-        <?php $fc_cnt++; endwhile; ?>
-      </div></div>
-          <?php }elseif($section_type == "one-by-two") {
-
-          $one_by_two_l_bg = get_sub_field('one_by_two_l_bg');
-          $one_by_two_l_bg_url = $one_by_two_l_bg['sizes']['large'];
-          $one_by_two_block_type = get_sub_field('one_by_two_l_block_type');
-          $one_by_two_cta_link_text = get_sub_field('one_by_two_l_cta_l_text');
-          $one_by_two_cta_link_url = get_sub_field('one_by_two_l_cta_link');
-          $one_by_two_l_bg = get_sub_field('one_by_two_left_bg_color');
-          ?>
-          <div class="container">
-          <div class="row">
-            <div class="six columns two-column obt-l block" style="background-image:url('<?php echo $one_by_two_l_bg_url; ?>')">
-
-              <?php if ($one_by_two_block_type == "image-callout"){ 
-                 $one_by_two_callout_paragraph = get_sub_field('one_by_two_l_callout_paragraph');
-                ?>
-
-              <div class="one-by-two-callout">
-                <h2><?php echo $one_by_two_callout_paragraph ?></h2>
-              </div>
-
-              <?php } ?>
-
-              <div class="cta-link">
-                <?php echo $one_by_two_cta_link_text; ?>
-              </div>
-            </div>
-
-            <div class="six columns two-column block obt-r">
-
-              <?php while (have_rows('one_by_two_rt')) : the_row(); 
-                $one_by_two_rt_bg = get_sub_field('one_by_two_r_bg');
-                $obt_r_cat_text = get_sub_field('one_by_two_r_category');
-                $obt_r_title = get_sub_field('one_by_two_r_title');
-                $obt_r_ct_text = get_sub_field('one_by_two_r_callout_text');
-                $obt_r_ct_link = get_sub_field('one_by_two_r_callout_link');
-              ?>
-
-              <div class="obt-r-cont">
-                <div class="cat">
-                  <?php echo $obt_r_cat_text ?>
-                  <img src="<?php echo get_template_directory_uri('/'); ?>/img/squiggle-divider-purple.png">
-                </div>
-                <div class="obt-r-cta">
-                  <p><?php echo $obt_r_ct_text; ?></p>
-                </div>
-              </div>
-
-            <?php endwhile; ?>
-            </div>
-          </div>
-          <?php } ?>
-
-
-        <?php endwhile; endif;?>
-
-    </div><!--end grid-->
-
-
+<?php get_template_part('/partials/grid'); ?>
 
   <?php if (have_rows("content_blocks")): ?>
     <div class="container">

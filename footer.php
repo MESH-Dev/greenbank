@@ -51,7 +51,7 @@
 					<div class="row">
 						<div class="wrap">
 							<div class="copyright six columns">
-								<p>
+								<p class="copyright">
 									&copy; <?php date('Y'); ?>Green bank Observatory, website by <a href="http://meshfresh.com" target="_blank">MESH</a>
 								</p>
 							</div>

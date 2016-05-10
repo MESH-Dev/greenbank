@@ -70,7 +70,7 @@
 							<i class="fa fa-fw fa-2x fa-bars"></i>
 						</div>
 						<div class="navigation">
-							<div class="sidr-close"> <img src="<?php echo get_template_directory_uri('/'); ?>/img/logo.png"></div>
+							
 							<nav class="gateway-navigation">
 								<?php if(has_nav_menu('gateway_nav')){
 											$defaults = array(
@@ -101,6 +101,7 @@
 									</div>
 							</nav>
 							<nav class="main-navigation">
+								<div class="sidr-close"> <img src="<?php echo get_template_directory_uri('/'); ?>/img/sidr-close.png"></div>
 								<?php if(has_nav_menu('main_nav')){
 											$defaults = array(
 												'theme_location'  => 'main_nav',

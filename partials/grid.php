@@ -38,6 +38,11 @@
             $fc_background_url = $fc_background['sizes']['large'];
             $copy_title = get_sub_field('copy_title');
             $copy_paragraph = get_sub_field('copy_paragraph');
+            
+            $has_hover = get_sub_field('has_hover');
+            $hover_text = get_sub_field('hover_text');
+            $hover_lt = get_sub_field('hover_link_text');
+            $hover_url = get_sub_field('hover_link');
 
             if ($fc_cnt == 1){
               $number = "odd";
@@ -52,17 +57,33 @@
 
             <?php if($four_column_type == "option-one") { ?>
               
-              <div class="three columns four-column block" style="background-image:url('<?php echo $fc_background_url; ?>')">
+              <div class="three columns four-column block op1" style="background-image:url('<?php echo $fc_background_url; ?>')">
                 <div class="callout <?php echo $number; ?>">
                   <span>
                     <?php echo $grid_callout ?>
                   </span>
                 </div>
+                <!-- hover block -->
+                <?php 
+                
+                 
+                  
+                  if($has_hover == 1 && $hover_text !=''){ 
+                  ?>
+                  <a href="<?php echo $hover_url; ?>"><?php echo $hover_lt; ?>
+                    <div class="fb-hover">
+                      <div class="wrap">
+                        <p class="fb-hover-text"><?php echo $hover_text; ?></p>
+                        <img src="<?php echo get_template_directory_uri('/'); ?>/img/cta-arrow.png">
+                      </div>
+                    </div>
+                  </a>
+                  <?php } ?>
               </div>
               
             <?php }elseif($four_column_type == "option-two") {?>
 
-              <div class="three columns four-column block  <?php echo $special_background; ?> ">
+              <div class="three columns four-column block op2  <?php echo $special_background; ?> ">
                 <div class="callout <?php echo $number; ?>">
                   <span>
                     <?php echo $grid_callout ?>
@@ -72,6 +93,18 @@
                     <h3><?php echo $copy_title; ?></h3>
                     <p><?php echo $copy_paragraph; ?></p>
                   </div>
+                  <?php
+                    if($has_hover != 0 && $hover_text !=''){ 
+                  ?>
+                  <a href="<?php echo $hover_url; ?>"><?php echo $hover_lt; ?>
+                    <div class="fb-hover">
+                      <div class="wrap">
+                        <p class="fb-hover-text"><?php echo $hover_text; ?></p>
+                        <img src="<?php echo get_template_directory_uri('/'); ?>/img/cta-arrow.png">
+                      </div>
+                    </div>
+                  </a>
+                  <?php } ?>
               </div>
             <?php } ?>
 

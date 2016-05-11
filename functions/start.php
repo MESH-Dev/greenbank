@@ -30,7 +30,7 @@ if( function_exists('acf_add_options_page') ) {
 
 //Add/Change excerpt
 function new_excerpt_more( $more ) {
-  return '...  <div class="read-more"><a class="cta-link" href="' . get_permalink( get_the_ID() ) . '">' . __( 'Explore radio science', 'your-text-domain' ) . '</a></div>';
+  return '...  <div class="read-more"><a class="cta-link" href="' . get_permalink( get_the_ID() ) . '"><span>' . __( 'Explore radio science', 'your-text-domain' ) . '</a></span></div>';
 }
 add_filter( 'excerpt_more', 'new_excerpt_more' );
 

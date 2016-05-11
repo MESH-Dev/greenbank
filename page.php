@@ -58,7 +58,9 @@ get_header(); ?>
 
 
 	  		<a class="cta-link" href="<?php get_field('landing_callout_CTA_link') ?>">
-  			<?php echo get_field('landing_callout_CTA_link_text') ?>
+	  		  <span>
+	  		    <?php echo get_field('landing_callout_CTA_link_text') ?>
+  		    </span>
   			</a>
   		</div>
   		<div class="twelve columns">

@@ -39,7 +39,7 @@
             $copy_title = get_sub_field('copy_title');
             $copy_paragraph = get_sub_field('copy_paragraph');
             
-            $has_hover = get_sub_field('has_hover');
+            //$has_hover = get_sub_field('has_hover');
             $hover_text = get_sub_field('hover_text');
             $hover_lt = get_sub_field('hover_link_text');
             $hover_url = get_sub_field('hover_link');
@@ -68,9 +68,9 @@
                 
                  
                   
-                  if($has_hover == 1 && $hover_text !=''){ 
+                  if($hover_text !=''){ 
                   ?>
-                  <a href="<?php echo $hover_url; ?>"><?php echo $hover_lt; ?>
+                  <a href="<?php echo $hover_url; ?>">
                     <div class="fb-hover">
                       <div class="wrap">
                         <p class="fb-hover-text"><?php echo $hover_text; ?></p>
@@ -94,9 +94,9 @@
                     <p><?php echo $copy_paragraph; ?></p>
                   </div>
                   <?php
-                    if($has_hover != 0 && $hover_text !=''){ 
+                    if($hover_text !=''){ 
                   ?>
-                  <a href="<?php echo $hover_url; ?>"><?php echo $hover_lt; ?>
+                  <a href="<?php echo $hover_url; ?>">
                     <div class="fb-hover">
                       <div class="wrap">
                         <p class="fb-hover-text"><?php echo $hover_text; ?></p>
@@ -138,7 +138,9 @@
 
              
                 <a class="cta-link" href="<?php echo $one_by_two_cta_link_url; ?>">
-                  <?php echo $one_by_two_cta_link_text; ?>
+                  <span>
+                    <?php echo $one_by_two_cta_link_text; ?>
+                  </span>
                 </a>
               
             </div>
@@ -161,7 +163,7 @@
                   </div>
                   <!-- <a href="$obt_r_ct_link"> -->
                     <div class="obt-r-cta">
-                      <h3 class="title"><?php echo $obt_r_title ?></h3>
+                      <h3 class="title"><a href="<?php echo $obt_r_ct_link; ?>"><?php echo $obt_r_title; ?></a></h3>
                       <?php if ($obt_r_subtitle != "") {?>
                       <h4 class="subtitle"><?php echo $obt_r_subtitle; ?></h4>
                       <?php } ?>

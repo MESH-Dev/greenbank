@@ -111,7 +111,9 @@ get_header(); ?>
             <?php echo $hp_intro; ?>
           </h2>
           <a class="cta-link" href="<?php echo $hp_intro_cta_link; ?>">
-            <?php echo $hp_intro_cta ?>
+            <span>
+              <?php echo $hp_intro_cta ?>
+            </span>
           </a>
         </div>
       </div>

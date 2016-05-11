@@ -116,7 +116,7 @@ header{
 	position:absolute;
 	width:100%;
 	top:0;
-	z-index:1000;
+	z-index:999999999;
 
 	.wrap{
 		//max-width: 1300px;
@@ -135,6 +135,25 @@ header{
 	margin:0;
 	padding:0;
 	line-height: 1.25;
+}
+
+.children{
+	padding-top: 30px;
+	li{
+		display:inline;
+		padding-right:15px;
+		
+		a{
+			color:white;
+			@include proxima-extrabold;
+			font-size:14px;
+			text-transform:uppercase;
+			
+			&:hover{
+				
+			}
+		}
+	}
 }
 
 main a:hover,

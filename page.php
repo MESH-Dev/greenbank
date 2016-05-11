@@ -32,7 +32,17 @@ get_header(); ?>
           <h1 class="page-title"><?php the_title(); ?></h1>
           <img src="<?php echo get_template_directory_uri('/'); ?>/img/squiggle-underline.png">
         </div>
+        
+        $children = wp_list_pages("title_li=&child_of=".$post->post_parent."&echo=0");
+        
+        <?php if ($children) { ?>
 
+ 								 <ul class="subnav">
+  									<?php echo $children; ?>
+  								</ul>
+
+						<?php } ?>
+        
       <?php endif; ?>
 
     </div>

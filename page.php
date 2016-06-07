@@ -73,6 +73,14 @@ get_header(); ?>
         <?php //while ( have_posts() ) : the_post(); ?>
 
           <div class="the-content">
+            <?php 
+          $callout = get_field('callout');
+          if ($callout){
+        ?>
+        <p class="callout">
+          <?php echo get_field('callout'); ?>
+        </p>
+        <?php } ?>
             <?php the_content(); ?>
           </div>
 

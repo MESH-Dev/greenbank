@@ -56,6 +56,9 @@
 						<?php while ( have_posts() ) : the_post(); ?>
 
 							<div class="post">
+
+								<h2 class="content-title"><a href="<?php the_permalink() ?>"><?php the_title(); ?></a></h2>
+								<div class="tags">By <?php the_author(); ?> | Categories: <?php the_category(', '); ?> | <?php comments_popup_link(); ?></div>
 								<?php if ( has_post_thumbnail() ) {
 									the_post_thumbnail('large');
 									} 
@@ -64,8 +67,8 @@
 								<?php if(get_field('callout')){ ?>
 								<p class="callout"><?php echo get_field('callout', $post->ID); ?></p>
 								<?php } ?>
-								<h2 class="content-title"><a href="<?php the_permalink() ?>"><?php the_title(); ?></a></h2>
-								<div class="tags">By <?php the_author(); ?> | Categories: <?php the_category(', '); ?> | <?php comments_popup_link(); ?></div>
+								
+								
 								<?php the_excerpt(); ?><!-- 'Read more &#8658' -->
 							</div>
 							 <div class="separator">

@@ -39,7 +39,7 @@ get_header(); ?>
 
     <div class="row">
       
-      <div class="page-content shaun">
+      <div class="page-content">
       	
 			<?php get_template_part('/partials/blog-menu'); ?>
 		
